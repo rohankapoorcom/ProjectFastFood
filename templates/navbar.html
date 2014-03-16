@@ -1,4 +1,47 @@
 <!DOCTYPE html>
 <head>
 	<link href="../resources/css/foundation.css" type="text/css" rel ="stylesheet" />
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="../resources/js/foundation.min.js"></script> 
+
+	<title>Fastest Food Finder</title>
 </head>
+<body>
+	<nav class="top-bar" data-topbar>
+	  <ul class="title-area">
+	    <li class="name">
+	      <h1><a href="#">Fastest Food Finder</a></h1>
+	    </li>
+	    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+	  </ul>
+
+	  <section class="top-bar-section">
+	    <!-- Right Nav Section -->
+	    <ul class="right">
+	  	  <li class="has-dropdown">
+	      	<a href="#">Account</a>
+	      	<ul class="dropdown">
+	  	    	<li><a href="#">Sign Up</a></li>
+	  	    	<li><a href='#'>Sign In</a></li>
+	        </ul>
+	      </li>
+	    </ul>
+
+	    <!-- Left Nav Section -->
+	    <ul class="left">
+	      <li><a href="#">About</a></li>
+	      <li><a href="#">Best Locations</a></li>
+	      <li class="has-dropdown">
+	      	<a href="#">Order</a>
+	      	<ul class="dropdown">
+	      		<li><a href="#">Log an Order</a></li>
+	      		<li><a href="#">Place an Order</a></li>
+	      	</ul>
+	      </li>
+	    </ul>
+	  </section>
+	</nav>
+	<script>
+    	$(document).foundation();
+  	</script>
+</body>
