@@ -26,8 +26,8 @@ function sec_session_start() {
 
 function login($email, $password, $mysql_con) {
     // Using prepared statements means that SQL injection is not possible. 
-    if ($stmt = $mysql_con->prepare("SELECT id, email, password
-        FROM members
+    if ($stmt = $mysql_con->prepare("SELECT id, email, salt, password
+        FROM users
        WHERE email = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
@@ -35,18 +35,16 @@ function login($email, $password, $mysql_con) {
         $stmt->store_result();
  
         // get variables from result.
-        $stmt->bind_result($user_id, $username, $salt);
+        $stmt->bind_result($user_id, $username, $salt, $db_password);
         $stmt->fetch();
  
         // hash the password with the unique salt.
         $password = hash('sha512', $password . $salt);
         if ($stmt->num_rows == 1) {
-            // If the user exists we check if the account is locked
-            // from too many login attempts 
-
+            
             // Check if the password in the database matches
             // the password the user submitted.
-            if ($salt == $password) {
+            if ($db_password == $password) {
                 // Password is correct!
                 // Get the user-agent string of the user.
                 $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -91,7 +89,7 @@ function login_check($mysqli) {
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
  
         if ($stmt = $mysqli->prepare("SELECT password 
-                                      FROM members 
+                                      FROM users 
                                       WHERE id = ? LIMIT 1")) {
             // Bind "$user_id" to parameter. 
             $stmt->bind_param('i', $user_id);

@@ -10,7 +10,7 @@ if (isset($_POST['email'], $_POST['p'])) {
  
     if (login($email, $password, $mysql_con) == true) {
         // Login success 
-        header('Location: ../index.php?worked=1');
+        header('Location: ../account/');
     } else {
         // Login failed 
         header('Location: ../login.php?error=1');

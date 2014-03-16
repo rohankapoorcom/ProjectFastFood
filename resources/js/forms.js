@@ -15,24 +15,15 @@ function formhash(form, password) {
     form.submit();
 }
  
-function regformhash(form, uid, email, password, conf) {
+function regformhash(form, name, email, password, conf) {
      // Check each field has a value
-    if (uid.value == ''         || 
+    if (  name.value == ''      ||
           email.value == ''     || 
           password.value == ''  || 
           conf.value == '') {
  
         alert('You must provide all the requested details. Please try again');
         return false;
-    }
- 
-    // Check the username
- 
-    re = /^\w+$/; 
-    if(!re.test(form.username.value)) { 
-        alert("Username must contain only letters, numbers and underscores. Please try again"); 
-        form.username.focus();
-        return false; 
     }
  
     // Check that the password is sufficiently long (min 6 chars)

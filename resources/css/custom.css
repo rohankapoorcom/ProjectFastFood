@@ -10,7 +10,6 @@ body {
 	margin-right: 20%;
 	width: 60%;
 	height: auto;
-
 	background-color: rgba(255,255,255,0.7);
 	border-style: none;
 }
@@ -20,7 +19,8 @@ body {
 		-webkit-border-radius: 10px;
 	}
 
-	.jumbotron.panel h4 {
+	.jumbotron.panel h4,
+	.jumbotron.panel h1 {
 		text-align: center;
 	}
 
@@ -33,4 +33,19 @@ body {
 		margin-top: 6%;
 	}
 
+	.jumbotron .centered {
+		margin-left: auto;
+		margin-right: auto;
+		width: 40%;
+	}
 
+.button_centered {
+	text-align: center;
+	margin-left: 21%;
+	margin-right: auto;
+	width: 80%;
+}
+
+.align_right {
+	left: 18%;
+}
