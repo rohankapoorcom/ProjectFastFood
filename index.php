@@ -22,5 +22,5 @@
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
   	}
 
-	echo $twig->render('navbar.html');
+	echo $twig->render('base.html');
 ?>
