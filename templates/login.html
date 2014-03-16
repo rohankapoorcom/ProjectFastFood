@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+	{{ parent() }}
+	<script type="text/JavaScript" src="./resources/js/sha512.js"></script> 
+    <script type="text/JavaScript" src="./resources/js/forms.js"></script> 
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="panel radius jumbotron">
+	<h4>Login to Fastest Food Finder</h4>
+	{% if login_error == true %}
+		<p class="error">Invalid Email/Password! Please try again:</p>
+	{% endif %}
+
+	<form action="./includes/process_login.php" method="post" name="login_form">                      
+	    Email: <input type="text" name="email" />
+	    Password: <input type="password" 
+	                     name="password" 
+	                     id="password"/>
+	    <input type="button" 
+	           value="Login" 
+	           onclick="formhash(this.form, this.form.password);" /> 
+	</form>
+	<p>If you don't have a login, please <a href="register.php">register</a></p>
+	<p>If you are done, please <a href="./includes/logout.php">log out</a>
+</div>
+{% endblock %}
