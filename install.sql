@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Locations
 (
 	id int auto_increment,
 	street varchar(255),
-	zip varchar(5),
+	zip char(5),
 	PRIMARY KEY (id)
 );
 
