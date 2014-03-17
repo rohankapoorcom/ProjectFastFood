@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Log An Order{% endblock %}
+
+{% block content %}
+<div class="panel radius jumbotron">
+	<h4>Log An Order</h4>
+
+	<div class="row">
+		<div class="small-6 columns align_right">
+			<form action="./includes/process_order.php" method="post" name="log_order_form">
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Street:</label>
+				</div>
+				<div class="small-9 columns">
+					<input type="text" name="street" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Zip:</label>
+				</div>
+				<div class="small-9 columns">
+					<select name="zipcode" id="zipcode">
+						<option value="61801">61801</option>
+						<option value="61802">61802</option>
+						<option value="61803">61803</option>
+						<option value="61820">61820</option>
+						<option value="61821">61821</option>
+						<option value="61822">61822</option>
+						<option value="61824">61824</option>
+						<option value="61825">61825</option>
+						<option value="61826">61826</option>
+					</select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-3 columns">
+                	<label class="right inline">Restaurant:</label>
+                </div>
+                <div class="small-9 columns">
+					<select name="restaurant" id="restaurant">
+						{% for rest in rests %}
+							<option value="{{ rest.id }}">{{ rest.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Price:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<input type="number" name="price" min="0" max="999.99" step=".01" value="10.00">
+        		</div>
+    		</div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Ordered:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<input type="datetime-local" name="time-placed">
+        		</div>
+    		</div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Delivered:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<input type="datetime-local" name="time-delivered">
+        		</div>
+    		</div>
+	    <input class="button [radius round] button_centered" type="submit" value="Log" onclick="" /> 
+	</form>
+	
+</div>
+{% endblock %}
