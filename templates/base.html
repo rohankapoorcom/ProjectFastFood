@@ -23,11 +23,19 @@
 		    <!-- Right Nav Section -->
 		    <ul class="right">
 		  	  <li class="has-dropdown">
-		      	<a href="#">Account</a>
-		      	<ul class="dropdown">
-		  	    	<li><a href="/login/">Sign In</a></li>
-		  	    	<li><a href='/register/'>Sign Up</a></li>
-		        </ul>
+		  	  	{% if username %}
+		      		<a href="#">{{ username }}</a>
+		      		<ul class="dropdown">
+		      			<li><a href="/includes/logout.php">Logout</a></li>
+	      			</ul>
+		      	{% else %}
+		      		<a href="#">Account</a>
+		      		<ul class="dropdown">
+			  	    	<li><a href="/login/">Sign In</a></li>
+			  	    	<li><a href='/register/'>Sign Up</a></li>
+		        	</ul>
+	      		{% endif %}
+		      	
 		      </li>
 		    </ul>
 

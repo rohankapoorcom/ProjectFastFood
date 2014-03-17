@@ -25,6 +25,7 @@ function sec_session_start() {
 }
 
 function login($email, $password, $mysql_con) {
+    $_SESSION['junk'] = "hello";
     // Using prepared statements means that SQL injection is not possible. 
     if ($stmt = $mysql_con->prepare("SELECT id, email, salt, password
         FROM users
@@ -37,7 +38,7 @@ function login($email, $password, $mysql_con) {
         // get variables from result.
         $stmt->bind_result($user_id, $username, $salt, $db_password);
         $stmt->fetch();
- 
+
         // hash the password with the unique salt.
         $password = hash('sha512', $password . $salt);
         if ($stmt->num_rows == 1) {
@@ -65,10 +66,12 @@ function login($email, $password, $mysql_con) {
             else {
                 // Password is not correct
                 // We record this attempt in the database
+                $_SESSION['junk'] = "hello";
                 return false;
             }
         } 
         else {
+            $_SESSION['junk'] = "hello";
             // No user exists.
             return false;
         }

@@ -6,10 +6,12 @@
 	$loader = new Twig_Loader_Filesystem('./templates');
 	$twig = new Twig_Environment($loader);
 
-	sec_session_start();
+	session_start();
 
 	if (login_check($mysql_con) == true) {
 		$logged = 'in';
+		header('Location: /');
+		exit();
 	} else {
 		$logged = 'out';
 	}
