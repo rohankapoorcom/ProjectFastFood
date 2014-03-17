@@ -10,17 +10,10 @@ if (isset($_POST['street'], $_POST['zipcode'], $_POST['restaurant'], $_POST['pri
 	$street = filter_input(INPUT_POST, 'street', FILTER_SANITIZE_STRING);
 	$zipcode = filter_input(INPUT_POST, 'zipcode', FILTER_SANITIZE_STRING);
 	$restaurant = filter_input(INPUT_POST, 'restaurant', FILTER_SANITIZE_STRING);
-	$price = $_POST['price']; //=filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT);
+	$price = $_POST['price'];
 
-	$time_p = $_POST['time-placed'];
-	$time_p[10] = ' ';
-	$time_p = date_create_from_format('Y-m-d H:i', $time_p);
-	$time_placed = $time_p->format('Y-m-d H:i:s');
-
-	$time_d = $_POST['time-delivered'];
-	$time_d[10] = ' ';
-	$time_d = date_create_from_format('Y-m-d H:i', $time_d);
-	$time_delivered = $time_d->format('Y-m-d H:i:s');
+	$time_placed = $_POST['time-placed'];
+	$time_delivered = $_POST['time-delivered'];
 
 
 	$prep_stmt = "SELECT id FROM locations WHERE street = ? AND zip = ?";

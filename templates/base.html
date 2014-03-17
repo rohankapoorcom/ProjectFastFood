@@ -4,8 +4,13 @@
 		{% block head %}
 		<link href="../resources/css/foundation.css" type="text/css" rel ="stylesheet" />
 		<link href="../resources/css/custom.css" type="text/css" rel ="stylesheet" />
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script src="../resources/js/foundation.min.js"></script> 
+		<link rel="stylesheet" href="../resources/css/datetime-local-polyfill.css">
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" href="../resources/css/jquery.datetimepicker.css"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script type="text/javascript" src="../resources/js/foundation.min.js"></script> 
+		<script type="text/javascript" src="../resources/js/custom.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery.datetimepicker.js"></script>
 
 		<title>{% block title %}{% endblock %} | Fastest Food Finder</title>
 		{% endblock %}
@@ -80,6 +85,14 @@
 		{% endblock %}
 		<script>
 	    	$(document).foundation();
+
+	    	$('#datetimepicker1').datetimepicker({
+	    		format:'Y-m-d H:i:s'
+	    	});
+	    	$('#datetimepicker2').datetimepicker({
+	    		format:'Y-m-d H:i:s'
+	    	});
+
 	  	</script>
 	</body>
 </html>

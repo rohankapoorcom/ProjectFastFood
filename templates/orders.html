@@ -20,7 +20,11 @@
 						<td class="center"><input type="checkbox" name="del[{{order.orderID }}]" /></td>
 						<td class="center"><a href="/orders/{{order.orderID}}">{{ order.timePlaced }}</a></td>
 						<td class="center">{{ order.name }}</td>
-						<td class="center">{{ order.durationSeconds / 60 }}</td>
+						{% if order.durationMinutes == 1 %}
+							<td class="center">{{ order.durationMinutes }} minute</td>
+						{% else %}
+							<td class="center">{{ order.durationMinutes }} minutes</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</table>

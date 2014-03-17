@@ -38,7 +38,10 @@
 		$result = $stmt->get_result();
 		
 		while ($row = $result->fetch_object()) {
-			$results[$i++] = $row;			
+			$results[$i] = $row;
+
+			$results[$i]->durationMinutes = ceil($results[$i]->durationSeconds / 60);
+			$i++;
 		}
 	}
 

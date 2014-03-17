@@ -64,14 +64,6 @@
 		$result = $stmt->get_result();
 
 		$location = $result->fetch_object();
-
-		$tmp = $order->timePlaced;
-		$tmp[10] = 'T';
-		$order->timePlaced = $tmp;
-
-		$tmp = $order->timeArrived;
-		$tmp[10] = 'T';
-		$order->timeArrived = $tmp;
 	}
 
 	else {
@@ -79,6 +71,6 @@
 		exit();
 	}
 
-	echo $twig->render('edit_order.html', array('order' => $order, "rests" => $rests,
+	echo $twig->render('edit_order.html', array('username' => $username, 'order' => $order, "rests" => $rests,
 		"loc" => $location));
 ?>

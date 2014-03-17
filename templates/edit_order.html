@@ -8,65 +8,67 @@
 
 	<div class="row">
 		<div class="small-6 columns align_right">
-			<form action="../includes/process_order.php" method="post" name="log_order_form">
-			<div class="row">
-				<div class="small-3 columns">
-					<label class="right inline">Street:</label>
-				</div>
-				<div class="small-9 columns">
-					<label class="inline">{{ loc.street}}</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-3 columns">
-					<label class="right inline">Zip:</label>
-				</div>
-				<div class="small-9 columns">
-					<label class="inline">{{ loc.zip }}</label>
+			<form action="../includes/process_edit_order.php" method="post" name="log_edit_order_form">
+    			<div class="row">
+    				<div class="small-3 columns">
+    					<label class="right inline">Street:</label>
+    				</div>
+    				<div class="small-9 columns">
+    					<label class="inline">{{ loc.street}}</label>
+    				</div>
+    			</div>
+    			<div class="row">
+    				<div class="small-3 columns">
+    					<label class="right inline">Zip:</label>
+    				</div>
+    				<div class="small-9 columns">
+    					<label class="inline">{{ loc.zip }}</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="small-3 columns">
-                	<label class="right inline">Restaurant:</label>
+                <div class="row">
+                    <div class="small-3 columns">
+                    	<label class="right inline">Restaurant:</label>
+                    </div>
+                    <div class="small-9 columns">
+    					<select name="restaurant" id="restaurant">
+    						{% for rest in rests %}
+    							{% if rest.id == order.id %}
+    								<option selected value="{{ rest.id }}">{{ rest.name }}</option>
+    							{% else %}
+    								<option value="{{ rest.id }}">{{ rest.name }}</option>
+    							{% endif %}
+    						{% endfor %}
+    					</select>
+    				</div>
                 </div>
-                <div class="small-9 columns">
-					<select name="restaurant" id="restaurant">
-						{% for rest in rests %}
-							{% if rest.id == order.id %}
-								<option selected value="{{ rest.id }}">{{ rest.name }}</option>
-							{% else %}
-								<option value="{{ rest.id }}">{{ rest.name }}</option>
-							{% endif %}
-						{% endfor %}
-					</select>
-				</div>
-            </div>
-            <div class="row">
-            	<div class="small-3 columns">
-            		<label class="right inline">Price:</label>
-            	</div>
-            	<div class="small-9 columns">
-            		<input type="number" name="price" min="0" max="999.99" step=".01" value="{{ order.price}}">
+                <div class="row">
+                	<div class="small-3 columns">
+                		<label class="right inline">Price:</label>
+                	</div>
+                	<div class="small-9 columns">
+                		<input type="number" name="price" min="0" max="999.99" step=".01" value="{{ order.price}}">
+            		</div>
         		</div>
-    		</div>
-            <div class="row">
-            	<div class="small-3 columns">
-            		<label class="right inline">Ordered:</label>
-            	</div>
-            	<div class="small-9 columns">
-            		<input type="datetime-local" name="time-placed" value="{{ order.timePlaced }}">
+                <div class="row">
+                	<div class="small-3 columns">
+                		<label class="right inline">Ordered:</label>
+                	</div>
+                	<div class="small-9 columns">
+                		<input type="text" name="time-placed" id="datetimepicker1" value="{{ order.timePlaced }}">
+            		</div>
         		</div>
-    		</div>
-            <div class="row">
-            	<div class="small-3 columns">
-            		<label class="right inline">Delivered:</label>
-            	</div>
-            	<div class="small-9 columns">
-            		<input type="datetime-local" name="time-delivered" value="{{ order.timeArrived }}">
+                <div class="row">
+                	<div class="small-3 columns">
+                		<label class="right inline">Delivered:</label>
+                	</div>
+                	<div class="small-9 columns">
+                		<input type="text" name="time-delivered" id="datetimepicker2" value="{{ order.timeArrived }}">
+            		</div>
         		</div>
-    		</div>
-	    <input class="button [radius round] button_centered" type="submit" value="Edit" onclick="" /> 
-	</form>
-	
+                <input type="hidden" name="orderID" id="orderID" value="{{ order.orderID }}"/>
+	           <input class="button [radius round] button_centered" type="submit" value="Edit" onclick="" />
+	       </form>
+       </div>
+    </div>
 </div>
 {% endblock %}
