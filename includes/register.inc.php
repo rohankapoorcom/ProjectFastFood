@@ -1,6 +1,8 @@
 <?php
 include_once 'db-connect.php';
+include_once 'functions.php';
 
+session_start();
 $error_msg = "";
  
 if (isset($_POST['email'], $_POST['p'])) {
@@ -51,7 +53,8 @@ if (isset($_POST['email'], $_POST['p'])) {
         // Create a random salt
         $random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
  
-        // Create salted password 
+        // Create salted password
+        $oldpass = $password;
         $password = hash('sha512', $password . $random_salt);
  
         // Insert the new user into the database 
@@ -62,7 +65,20 @@ if (isset($_POST['email'], $_POST['p'])) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
                 exit;
             }
+
+            if (login($email, $oldpass, $mysql_con) == true) {
+                // Login success 
+                $redir = $_SESSION['login_redir'];
+                $_SESSION['login_redir'] = "";
+                header('Location: /' . $redir);
+                exit();
+            } else {
+                // Login failed
+                header('Location: /login/1');
+                exit();
+            }
+
         }
-        header('Location: ./register_success.php');
+        header('Location: ./');
     }
 }

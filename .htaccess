@@ -3,6 +3,8 @@ RewriteEngine on
 
 RewriteRule ^orders/([-a-zA-Z0-9]+)/?$ edit_order.php?id=$1 [L,NC]
 
+RewriteRule ^login/([-a-zA-Z0-9]+)/?$ login.php?error=$1 [L,NC]
+
 # to make `/path/index.php` to /path/
 RewriteCond %{THE_REQUEST} ^GET\s(.*/)index\.php [NC]
 RewriteRule . %1 [NE,R=301,L]
