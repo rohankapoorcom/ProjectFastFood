@@ -10,7 +10,9 @@ if (isset($_POST['email'], $_POST['p'])) {
  
     if (login($email, $password, $mysql_con) == true) {
         // Login success 
-        header('Location: /');
+        $redir = $_SESSION['login_redir'];
+        $_SESSION['login_redir'] = "";
+        header('Location: /' . $redir);
     } else {
         // Login failed 
         header('Location: /login.php?error=1');

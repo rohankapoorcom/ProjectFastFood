@@ -24,6 +24,7 @@
 	}
 
 	else {
+		$_SESSION['login_redir'] = substr($_SERVER["REQUEST_URI"], 1);
 		header('Location: /login/');
 		exit();
 	}
