@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Order History{% endblock %}
+
+{% block content %}
+<div class="panel radius jumbotron">
+	<h4>Order History</h4>
+
+	<div class="row">
+		<form action="../includes/delete_order.php" method="post" name="delete_order_form">
+			<table>
+				<tr>
+					<th>Delete</th>
+					<th>Ordered</th>
+					<th>Restaurant</th>
+					<th>Duration</th>
+				</tr>
+				{% for order in orders %}
+					<tr>
+						<td class="center"><input type="checkbox" name="del[{{order.orderID }}]" /></td>
+						<td class="center">{{ order.timePlaced }}</td>
+						<td class="center">{{ order.name }}</td>
+						<td class="center">{{ order.durationSeconds / 60 }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<input class="button [radius round] alert override_radius" type="submit" value="Delete Selected" onclick="" /> 
+		</form>
+	</div>
+	
+</div>
+{% endblock %}

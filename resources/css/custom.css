@@ -49,3 +49,20 @@ body {
 .align_right {
 	left: 18%;
 }
+
+table {
+	width: 100%;
+}
+
+	td.center {
+		text-align: center;
+	}
+
+	input.override_radius {
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+
+		margin-left: 35%;
+		margin-right: 35%;
+		width: 30%;
+	}
