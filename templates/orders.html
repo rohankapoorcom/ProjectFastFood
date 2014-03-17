@@ -18,7 +18,7 @@
 				{% for order in orders %}
 					<tr>
 						<td class="center"><input type="checkbox" name="del[{{order.orderID }}]" /></td>
-						<td class="center">{{ order.timePlaced }}</td>
+						<td class="center"><a href="/orders/{{order.orderID}}">{{ order.timePlaced }}</a></td>
 						<td class="center">{{ order.name }}</td>
 						<td class="center">{{ order.durationSeconds / 60 }}</td>
 					</tr>
