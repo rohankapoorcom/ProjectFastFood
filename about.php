@@ -8,6 +8,8 @@
 
 	session_start();
 
+	$username = "";
+
 	if (login_check($mysql_con) == true) {
 		$id = $_SESSION['user_id'];
 
