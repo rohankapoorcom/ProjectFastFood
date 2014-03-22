@@ -31,7 +31,7 @@
 
 	$query = "SELECT name, id from restaurants";
 
-	$rests;
+	$rests = "";
 	$i = 0;
 
 	if ($result = $mysql_con->query($query)) {
