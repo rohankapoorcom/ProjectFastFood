@@ -24,7 +24,11 @@
 		}
 	}
 
-	$query = "SELECT name, id, category FROM restaurants WHERE approved = 1";
+	$query = "SELECT restaurants.name, restaurants.id, categories.name AS category
+				FROM restaurants
+				INNER JOIN categories
+				ON restaurants.category=categories.id
+				WHERE restaurants.approved = 1";
 
 	$rests = "";
 	$i = 0;
