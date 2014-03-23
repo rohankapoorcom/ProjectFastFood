@@ -4,6 +4,8 @@ RewriteEngine on
 RewriteRule ^orders/([-a-zA-Z0-9]+)/?$ edit_order.php?id=$1 [L,NC]
 
 RewriteRule ^restaurants/add add_restaurant.php
+RewriteRule ^restaurants/([-a-zA-Z0-9]+)/?$ view_restaraunt.php?id=$1 [L,NC]
+RewriteRule ^restaurants/edit/([-a-zA-Z0-9]+)/?$ edit_restaurant.php?id=$1 [L,NC]
 
 RewriteRule ^login/([-a-zA-Z0-9]+)/?$ login.php?error=$1 [L,NC]
 
