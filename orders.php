@@ -8,7 +8,7 @@
 
 	session_start();
 
-	$results;
+	$results = "";
 
 	if (login_check($mysql_con) == true) {
 		$id = $_SESSION['user_id'];
