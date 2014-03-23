@@ -29,7 +29,7 @@
 		exit();
 	}
 
-	$query = "SELECT name, id from restaurants";
+	$query = "SELECT name, id from restaurants WHERE order = 1";
 
 	$rests = "";
 	$i = 0;
