@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Add a Restaurant{% endblock %}
+
+{% block content %}
+<div class="panel radius jumbotron">
+	<h4>Add a Restaurant</h4>
+	<h5>This form allows you to submit a restaurant for inclusion within Fastest Food Finder's database. All restaurants will be manually verified for accuracy reasons.</h5>
+
+	<div class="row">
+		<div class="small-6 columns align_right">
+			<form action="../includes/process_add_restaurant.php" method="post" name="add_restaurant_form">
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Category:</label>
+				</div>
+				<div class="small-9 columns">
+					<select name="category" id="category">
+						{% for category in categories %}
+							<option value="{{ category.id }}">{{ category.name}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="row">
+                <div class="small-3 columns">
+                	<label class="right inline">Name:</label>
+                </div>
+                <div class="small-9 columns">
+					<input type="text" name="name" />
+				</div>
+            </div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Street:</label>
+				</div>
+				<div class="small-9 columns">
+					<input type="text" name="street" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Zip:</label>
+				</div>
+				<div class="small-9 columns">
+					<select name="zipcode" id="zipcode">
+						<option value="61801">61801</option>
+						<option value="61802">61802</option>
+						<option value="61803">61803</option>
+						<option value="61820">61820</option>
+						<option value="61821">61821</option>
+						<option value="61822">61822</option>
+						<option value="61824">61824</option>
+						<option value="61825">61825</option>
+						<option value="61826">61826</option>
+					</select>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Delivers:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<select name="delivers" id="delivers">
+            			<option value="1">Yes</option>
+            			<option value="0">No</option>
+            		</select>
+            	</div>
+            </div>
+	    <input class="button [radius round] button_centered" type="submit" value="Add" onclick="" /> 
+	</form>
+	
+</div>
+{% endblock %}

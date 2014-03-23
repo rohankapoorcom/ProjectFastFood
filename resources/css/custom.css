@@ -20,7 +20,8 @@ body {
 	}
 
 	.jumbotron.panel h4,
-	.jumbotron.panel h1 {
+	.jumbotron.panel h1,
+	.jumbotron.panel h5 {
 		text-align: center;
 	}
 
