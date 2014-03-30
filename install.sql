@@ -16,12 +16,28 @@ CREATE TABLE IF NOT EXISTS Locations
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS Categories
+(
+	id int auto_increment,
+	name varchar(255),
+	PRIMARY KEY (id),
+	UNIQUE KEY (name)
+);
+
 CREATE TABLE IF NOT EXISTS Restaurants
 (
 	id int auto_increment,
 	name varchar(255),
 	location int,
 	FOREIGN KEY (location) REFERENCES Locations(id),
+	category int,
+	FOREIGN KEY (category) REFERENCES Categories(id),
+	delivers tinyint,
+	approved tinyint,
+	requester int,
+	FOREIGN KEY (requester) REFERENCES Users(id),
+	approver int,
+	FOREIGN KEY (approver) REFERENCES Users(id),
 	PRIMARY KEY (id)
 );
 
