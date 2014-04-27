@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Import GrubHub {% endblock %}
+{% block content %}
+<div class="panel radius jumbotron">
+	<h4>Import GrubHub Email</h4>
+	<form action="../process_grubhub.php" method="post" name="log_grubhub_form_1">
+		<textarea name="grubhub_text" id="grubhub_text" cols="80" rows="40"></textarea>
+		<input class="button [radius round] button_centered_large" type="submit" value="Import GrubHub" onclick="" /> 
+	
+</div>
+{% endblock %}

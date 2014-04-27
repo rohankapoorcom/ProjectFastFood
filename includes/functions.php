@@ -156,3 +156,111 @@ function esc_url($url) {
         return $url;
     }
 }
+
+function parse_grubhub($inputString) {
+    $len = strlen($inputString);
+    $valid = true;  # Start off optimistic
+   
+    $arrivePos = strpos($inputString, "arrive around", 0);
+    $dashPos = 0;
+    $periodPos = 0;
+    $contactPos = 0;
+    $brkPos = 0;
+    $spacePos = 0;
+    $dollarPos = 0;
+    $totalPos = 0;
+    $deliverPos = 0;
+    $commaPos = 0;
+    $arriveLow = "";
+    $arriveHigh = "";
+    $restaurant = "";
+    $total = "";
+    $addressRaw = "";
+    $addressStreet = "";
+    $zip = "";
+   
+    $valid = ($arrivePos !== false && $len > $arrivePos+36);
+    if($valid) {
+            $dashPos = strpos($inputString, '-', $arrivePos+14);
+            $valid = ($arrivePos !== false);
+    }
+    if($valid) {
+            $arriveLow = substr($inputString, $arrivePos+14, $dashPos-$arrivePos-15);
+            $periodPos = strpos($inputString, '.', $dashPos);
+            $valid = ($periodPos !== false);
+    }
+    if($valid) {
+            $arriveHigh = substr($inputString, $dashPos+2, $periodPos-$dashPos-2);
+           
+            //print("ArriveLow = \"".$arriveLow."\"<br />");
+            //print("ArriveHigh = \"".$arriveHigh."\"<br />");
+           
+            $contactPos = strpos($inputString, "contact you.", $periodPos);
+            $valid = ($contactPos !== false);
+    }
+    if($valid) {
+            $brkPos = strpos($inputString, "Order", $contactPos+16);
+            $valid = ($brkPos !== false);
+    }
+    if($valid) {
+            $restaurant = trim(substr($inputString, $contactPos+16, $brkPos-$contactPos-18));
+           
+            //print("Restaurant = \"".$restaurant."\"<br />");
+            
+            $totalPos = strPos($inputString, "TOTAL", $brkPos);
+            $valid = ($totalPos !== false);
+    }
+    if($valid) {
+        $totalPos = strPos($inputString, "$", $totalPos);
+        $valid = ($totalPos !== false);
+    }
+    if($valid) {
+            $brkPos = strpos($inputString, ".", $totalPos+2);
+            $valid = ($brkPos !== false);
+    }
+    if($valid) {
+
+            $brkPos += 3;
+            $total = trim(substr($inputString, $totalPos+2, $brkPos-$totalPos-2));
+           
+            //print("Total = \"".$total."\"<br /><br />");
+           
+            $deliverPos = strpos($inputString, "Deliver to", $brkPos);
+            $valid = ($deliverPos !== false);
+    }
+    if($valid) {
+            $brkPos = strpos($inputString, "\n", $deliverPos+12);
+            $commaPos = strpos($inputString, ", ", $deliverPos);
+            $valid = ($commaPos !== false && $brkPos !== false);
+    }
+    if($valid) {
+            $deliverPos = $brkPos+1;
+            $addressRaw = trim(substr($inputString, $deliverPos, $commaPos+4-$deliverPos));
+           
+            $urbana = strpos($addressRaw, "Urbana, IL");
+            $champaign = strpos($addressRaw, "Champaign, IL");
+            if($urbana !== false) {
+                    $zip = "61801";
+                    $addressStreet = trim(str_replace("\n", " ",substr($addressRaw, 0, $urbana)));
+            } else if($champaign !== false) {
+                    $zip = "61820";
+                    $addressStreet = trim(str_replace("\n", " ",substr($addressRaw, 0, $champaign)));
+            } else {
+                    $spacePos = strrpos($addressRaw, "\n", ($commaPos-$deliverPos)-strlen($addressRaw));
+                    if($spacePos !== false) {
+                            $addressStreet = trim(str_replace("\n", " ", substr($addressRaw, 0, $spacePos)));
+                    }
+            }
+           
+            //print("Address = \"".$addressStreet."\"<br />");
+            //print("Zip = \"".$zip."\"<br /><br />");
+    }
+    if($valid) {
+            //print("Parse Complete!");
+            $obj = (object) array("low" => $arriveLow, "high" => $arriveHigh, "restaurant" => $restaurant, "price" => $total, "address" => $addressStreet, "zip" => $zip);
+            return $obj;
+    } else {
+            //print("Parse Fail!");
+            return false;
+    }
+}

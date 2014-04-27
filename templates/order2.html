@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Log An Order{% endblock %}
+
+{% block content %}
+<div class="panel radius jumbotron">
+	<h4>Log An Order</h4>
+
+	<div class="row">
+		<div class="small-6 columns align_right">
+			<form action="../includes/process_order.php" method="post" name="log_order_form">
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Street:</label>
+				</div>
+				<div class="small-9 columns">
+					<input type="text" name="street" value="{{ parsed_data.address }}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label class="right inline">Zip:</label>
+				</div>
+				<div class="small-9 columns">
+					<select name="zipcode" id="zipcode">
+						<option {{ (parsed_data.zip == "61801" ? "selected" : "") }} value="61801">61801</option>
+						<option {{ (parsed_data.zip == "61802" ? "selected" : "") }} value="61802">61802</option>
+						<option {{ (parsed_data.zip == "61803" ? "selected" : "") }} value="61803">61803</option>
+						<option {{ (parsed_data.zip == "61820" ? "selected" : "") }} value="61820">61820</option>
+						<option {{ (parsed_data.zip == "61821" ? "selected" : "") }} value="61821">61821</option>
+						<option {{ (parsed_data.zip == "61822" ? "selected" : "") }} value="61822">61822</option>
+						<option {{ (parsed_data.zip == "61824" ? "selected" : "") }} value="61824">61824</option>
+						<option {{ (parsed_data.zip == "61825" ? "selected" : "") }} value="61825">61825</option>
+						<option {{ (parsed_data.zip == "61826" ? "selected" : "") }} value="61826">61826</option>
+					</select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-3 columns">
+                	<label class="right inline">Restaurant:</label>
+                </div>
+                <div class="small-9 columns">
+					<select name="restaurant" id="restaurant">
+						{% for rest in rests %}
+    							{% if rest.name == parsed_data.restaurant %}
+    								<option selected value="{{ rest.id }}">{{ rest.name }}</option>
+    							{% else %}
+    								<option value="{{ rest.id }}">{{ rest.name }}</option>
+    							{% endif %}
+						{% endfor %}
+					</select>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Price:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<input type="number" name="price" min="0" max="999.99" step=".01" value="{{ parsed_data.price }}">
+        		</div>
+    		</div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Ordered:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<input type="text" id="datetimepicker1" name="time-placed" value="{{ parsed_data.low_time }}">
+        		</div>
+    		</div>
+            <div class="row">
+            	<div class="small-3 columns">
+            		<label class="right inline">Delivered:</label>
+            	</div>
+            	<div class="small-9 columns">
+            		<input type="text" id="datetimepicker2" name="time-delivered" value="{{ parsed_data.high_time }}">
+        		</div>
+    		</div>
+	    <input class="button [radius round] button_centered" type="submit" value="Log" onclick="" /> 
+	</form>
+	
+</div>
+{% endblock %}

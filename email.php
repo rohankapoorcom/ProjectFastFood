@@ -29,18 +29,5 @@
 		exit();
 	}
 
-	$query = "SELECT name, id from restaurants WHERE approved = 1";
-
-	$rests = "";
-	$i = 0;
-
-	if ($result = $mysql_con->query($query)) {
-		while ($row = $result->fetch_object()) {
-			$rests[$i++] = $row;
-		}
-
-		$result->close();
-	}
-
-	echo $twig->render('order.html', array('username' => $username, "rests" => $rests));
+	echo $twig->render('email.html', array('username' => $username));
 ?>
