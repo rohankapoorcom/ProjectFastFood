@@ -26,8 +26,6 @@ if (isset($_POST['street'], $_POST['zipcode'], $_POST['restaurant'], $_POST['pri
 		$stmt->execute();
 		$stmt->store_result();
 
-		print("I'm here");
-
 		if ($stmt->num_rows == 1) {
 			// We have the id
 			$stmt->bind_result($location_id);
