@@ -8,19 +8,17 @@
 	<div class="row">
 		<table>
 			<tr>
-				<th>Type</th>
+				<th>Average Wait Time (HH:MM:SS.MS)</th>
+				<th>Average Cost</th>
 				<th>Name</th>
-				<th>Delivery</th>
+				<th>Type</th>
 			</tr>
 			{% for restaurant in restaurants %}
 				<tr>
-					<td class="center">{{ restaurant.category }}</td>
+					<td class="center">{{ restaurant.average_wait_time}}</td>
+					<td class="center">${{ restaurant.price}}</td>
 					<td class="center">{{ restaurant.name }}</td>
-					{% if restaurant.delivers == 1 %}
-						<td class="center">Yes</td>
-					{% else %}
-						<td class="center">No</td>
-					{% endif %}
+					<td class="center"><a href="{{ restaurant.catid }}">{{ restaurant.category }}</a></td>
 				</tr>
 			{% endfor %}
 		</table>

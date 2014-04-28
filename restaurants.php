@@ -24,7 +24,7 @@
 		}
 	}
 
-	$query = "SELECT restaurants.name, restaurants.id, categories.name AS category
+	$query = "SELECT restaurants.name, restaurants.id, categories.name AS category, restaurants.delivers
 				FROM restaurants
 				INNER JOIN categories
 				ON restaurants.category=categories.id
@@ -40,7 +40,6 @@
 
 		$result->close();
 	}
-
 
 	echo $twig->render('list_restaurants.html', array('username' => $username, 'restaurants' => $rests));
 ?>

@@ -50,7 +50,7 @@ if (isset($_POST['street'], $_POST['zipcode'], $_POST['name'], $_POST['category'
 	$stmt = $mysql_con->prepare($prep_stmt);
 
 	$uid = $_SESSION['user_id'];
-	$approved = 0;
+	$approved = 1;
 
 	if ($stmt) {
 		$stmt->bind_param('siiiii', $name, $location_id, $category, $delivers, $approved, $uid);
