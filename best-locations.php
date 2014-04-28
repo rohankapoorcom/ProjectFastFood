@@ -39,7 +39,7 @@
 
 	$query = "CREATE OR REPLACE VIEW averages AS
 				SELECT AVG(TIME_TO_SEC(TIMEDIFF(orders.timeArrived, orders.timePlaced))) AS wait_time,
-					 AVG(orders.price) AS price,
+					 ROUND(AVG(orders.price),2) AS price,
 					 orders.restaurant
 				FROM orders 
 				GROUP BY orders.restaurant";
